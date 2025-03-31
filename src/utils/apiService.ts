@@ -1,4 +1,4 @@
-import { ApiResponse, AxiosErrorType, MovieResponse } from "@/types";
+import { ApiResponse, AxiosErrorType, MovieResponses } from "@/types";
 import { AxiosRequestConfig } from "axios";
 import getInstance from "./axio";
 
@@ -33,9 +33,9 @@ const getRequest = async <T>(
 }
 
 
-export const gatMovie = async (
+export const getMovie = async (
     endpoint: string,
-):Promise <ApiResponse<MovieResponse>> =>{
+):Promise <ApiResponse<MovieResponses>> =>{
     const config: AxiosRequestConfig = {
         params:{
             api_key: process.env.NEXT_PUBLIC_TMBD_KEY,
@@ -43,7 +43,7 @@ export const gatMovie = async (
             page: 1,
         }
     }
-    return await getRequest:<MovieResponse>(endpoint, config);
+    return await getRequest<MovieResponses>(endpoint, config);
 }
 
 

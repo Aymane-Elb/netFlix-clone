@@ -20,7 +20,7 @@ export interface CardProps{
     removeMovie?:(id:number)=> void;
     item: Media;
     Mediatype?: string;
-    enableDenres?: boolean;
+    enableGenres?: boolean;
 }
 
 export enum MediaType{
@@ -84,7 +84,7 @@ export interface ApiResponse<T>{
     
 }
 
-export interface MovieResponse{
+export interface MovieResponses{
     page:number,
     total_results: number,
     total_pages : number,
@@ -114,3 +114,10 @@ export interface Media{
     type?: string;
     genres?: [];
     }
+export interface MovieSectionProps {
+    heading: string;
+    endpoint: string;
+    loading?: boolean;
+    setLoading?: (loading: boolean) => void;
+}
+      
