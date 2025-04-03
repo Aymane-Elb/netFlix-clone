@@ -4,18 +4,22 @@ import { Next, Previous } from "@/utils/icon";
 import { Button } from "@mui/material";
 import { SliderButtonProps } from "@/types";
 
-const SliderButton: React.FC<SliderButtonProps> = ({ isRight }) => {
-  const handleScroll = (event: React.MouseEvent<HTMLButtonElement>) => {
+const SliderButton: React.FC<SliderButtonProps> = ({ isRight }) => 
+  {
+  const handleScroll = (event: React.MouseEvent<HTMLButtonElement>) => 
+    {
     const parent = event.currentTarget.closest(".scroll-container-parent");
     const scrollContainer = parent?.querySelector(".scroll-container");
 
-    if (scrollContainer) {
+    if (scrollContainer) 
+      {
       scrollContainer.scrollBy({
         left: isRight ? 300 : -300,
         behavior: "smooth",
       });
       console.log(`Scrolling ${isRight ? "right" : "left"}`);
-    } else {
+    } else 
+    {
       console.error("Scroll container not found");
     }
   };

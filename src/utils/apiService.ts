@@ -1,51 +1,40 @@
-import { ApiResponse, AxiosErrorType, MovieResponses } from "@/types";
+import { ApiResponse, AxiosErrorType, MoviesResponse } from "@/types";
 import { AxiosRequestConfig } from "axios";
 import getInstance from "./axio";
 
-
-
-
 const getRequest = async <T>(
-    url:string,
-    config?:AxiosRequestConfig,
-):Promise <ApiResponse<T>> => {
+    url: string,
+    config?: AxiosRequestConfig,
+): Promise<ApiResponse<T>> => {
     const axiosInstance = getInstance();
-    try{
-        const response = await axiosInstance.get<T>(url,config)
-
-        return {data : response.data}
-    }
-    catch (err){
+    try {
+        const response = await axiosInstance.get<T>(url, config);
+        return { data: response.data };
+    } catch (err) {
         const error = err as AxiosErrorType;
         const status = error.response?.status;
         const details = error.response?.data;
 
         return {
-            error:{
-                message: `Failed to getch data from ${url}`,
+            error: {
+                message: `Failed to fetch data from ${url}`, // Fixed typo
                 status,
                 details,
-                name:"",
+                name: "",
             }
-        }
+        };
     }
-    
-}
-
+};
 
 export const getMovie = async (
     endpoint: string,
-):Promise <ApiResponse<MovieResponses>> =>{
+): Promise<ApiResponse<MoviesResponse>> => {
     const config: AxiosRequestConfig = {
-        params:{
-            api_key: process.env.NEXT_PUBLIC_TMBD_KEY,
+        params: {
+            api_key: process.env.NEXT_PUBLIC_TMBD_KEY, 
             sort_by: "vote_average.desc",
             page: 1,
         }
-    }
-    return await getRequest<MovieResponses>(endpoint, config);
-}
-
-
-
-
+    };
+    return await getRequest<MoviesResponse>(endpoint, config);
+};

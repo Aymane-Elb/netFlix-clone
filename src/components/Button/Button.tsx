@@ -1,43 +1,80 @@
 import { ButtonProps } from '@/types';
 import Box from '@mui/material/Box';
-import React from 'react'
+import React from 'react';
 
-const Button:React.FC<ButtonProps>=({props})=>  {
-    const {filled,label,Icon,rounded,onClick,hidden} = props;
-    const backgroundColor =filled? "white " :"#6d6d6db3";
-    const fontColor = filled? "black" : "white";
-
-    if(hidden){
-        return null
+const Button = (props: ButtonProps): React.ReactElement | null => {
+    const { filled, label, Icon, rounded, onClick, hidden } = props;
+  
+    const backgroundColor = filled ? "white" : "#6d6d6db3";
+    const fontColor = filled ? "black" : "white";
+  
+    if (hidden) {
+      return null;
     }
+  
+    
     return (
-      <>
-        <Box
-        component='button'
-        onClick={onClick}
-        sx={{
-            zIndex:10,
-            color:fontColor,
-            backgroundColor:backgroundColor,
-            width:rounded ?"min-content":"fit-content",
-            padding:rounded ? ".4rem": ".7rem 1.8rem", 
-            borderRadius:rounded ? "50%":".3rem" ,
-            cursor:"pointer",
-            display:"flex",
-            flexDirection:"row",
-            justifyContent:"center",
-            alignItems:"center",
-            margin:rounded? ".2rem" : '.4rem',
-        }}>
-            <Box>
-                <Box>
-                    {label}
+        <>
+            <Box
+                component='button'
+                onClick={onClick}
+                sx={{
+                    zIndex: 10,
+                    color: fontColor,
+                    backgroundColor: backgroundColor,
+                    width: rounded ? "min-content" : "fit-content",
+                    padding: rounded ? ".4rem" : ".7rem 1.8rem",
+                    borderRadius: rounded ? "50%" : ".3rem",
+                    cursor: "pointer",
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: rounded ? ".2rem" : '.4rem',
+                    border: filled ? "none" : "2.2px solid #ffffff80",
+                    outline: "none",
+                    fontSize: rounded ? "1rem" : "inherit",
+                    "&:hover": {
+                        opacity: .8,
+                        backgroundColor: filled ? "tomato" : backgroundColor,
+                    },
+                    "@media (max-width: 600px)": {
+                        backgroundColor: filled ? 'tomato' : backgroundColor,
+                        padding: rounded ? ".3rem" : ".5rem 1.2rem",
+                    }
+                }}
+            >
+                <Box
+                    component={Icon}
+                    sx={{
+                        fontSize: rounded ? '1rem' : '1.1rem',
+                        marginTop: !rounded ? '.8rem' : '0',
+                    }}
+                >
+                    {!rounded && (
+                        <Box
+                            component='span'
+                            sx={{
+                                fontWeight: "bold",
+                                fontSize: '1rem',
+                                marginLeft: '.8rem',
+                                '@media (max-width: 600px)': {
+                                    marginLeft: '.6rem',
+                                },
+                            }}
+                        >
+                            {label}
+                        </Box>
+                    )}
+                    {rounded && (
+                        <Box>
+                            {label}
+                        </Box>
+                    )}
                 </Box>
             </Box>
-
-        </Box>
-      </>
-    )
-  }
+        </>
+    );
+}
 
 export default Button;

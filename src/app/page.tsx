@@ -1,6 +1,6 @@
 "use client";
 import Banner from "@/components/Banner/Banner";
-// import { MovieSections } from "@/components/MovieSections/MovieSections";
+import { MovieSections } from "@/components/MovieSections/MovieSections";
 import { MovieSectionProps } from "@/types";
 import { Box, CircularProgress } from "@mui/material";
 import { useState } from "react";
@@ -36,7 +36,7 @@ const Home = () => {
         }}
       >
         <Box sx={{ marginLeft: "0.8rem", zIndex: 0 }}>
-          {/* {sections.map((item, index) => (
+          {sections.map((item, index) => (
             <MovieSections
               key={index}
               heading={item.heading}
@@ -44,7 +44,7 @@ const Home = () => {
               loading={loading}
               setLoading={setLoading}
             />
-          ))} */}
+          ))}
         </Box>
       </Box>
     </>
